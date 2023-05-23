@@ -4,6 +4,7 @@ const ol = document.getElementById('lista-tarefas');
 const li = document.getElementsByTagName('li');
 const clearBtn = document.getElementById('apaga-tudo');
 const completedBtn = document.getElementById('remover-finalizados');
+const saveBtn = document.getElementById('salvar-tarefas');
 
 const addList = () => {
   const list = document.createElement('li');
@@ -44,3 +45,11 @@ completedBtn.addEventListener('click', () => {
     }
   }
 });
+
+saveBtn.addEventListener('click', () => {
+  localStorage.setItem("list", ol.innerHTML);
+});
+
+window.onload = function () {
+  ol.innerHTML = localStorage.getItem("list");
+};
