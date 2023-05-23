@@ -3,6 +3,7 @@ const addBtn = document.getElementById('criar-tarefa');
 const ol = document.getElementById('lista-tarefas');
 const li = document.getElementsByTagName('li');
 const clearBtn = document.getElementById('apaga-tudo');
+const completedBtn = document.getElementById('remover-finalizados');
 
 const addList = () => {
   const list = document.createElement('li');
@@ -29,4 +30,17 @@ ol.addEventListener('dblclick', (event) => {
 
 clearBtn.addEventListener('click', () => {
   ol.innerHTML = '';
+});
+
+completedBtn.addEventListener('click', () => {
+  for (let index = 0; index < li.length; index += 1) {
+    if (li[index].classList.contains('completed')) {
+      li[index].remove();
+    }
+  }
+  for (let index = 0; index < li.length; index += 1) {
+    if (li[index].classList.contains('completed')) {
+      li[index].remove();
+    }
+  }
 });
