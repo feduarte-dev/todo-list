@@ -1,7 +1,7 @@
 const input = document.getElementById('texto-tarefa');
 const addBtn = document.getElementById('criar-tarefa');
 const ol = document.getElementById('lista-tarefas');
-const li = document.querySelectorAll('li');
+const li = document.getElementsByTagName('li');
 
 const addList = () => {
   const list = document.createElement('li');
@@ -12,5 +12,8 @@ const addList = () => {
 addBtn.addEventListener('click', addList);
 
 ol.addEventListener('click', (event) => {
+  for (let index = 0; index < li.length; index += 1) {
+    li[index].style.backgroundColor = 'white';
+  }
   event.target.style.backgroundColor = 'gray';
 });
