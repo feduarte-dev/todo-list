@@ -2,6 +2,7 @@ const input = document.getElementById('texto-tarefa');
 const addBtn = document.getElementById('criar-tarefa');
 const ol = document.getElementById('lista-tarefas');
 const li = document.getElementsByTagName('li');
+const clearBtn = document.getElementById('apaga-tudo');
 
 const addList = () => {
   const list = document.createElement('li');
@@ -19,9 +20,13 @@ ol.addEventListener('click', (event) => {
 });
 
 ol.addEventListener('dblclick', (event) => {
-if (event.target.classList.contains('completed')) {
-  event.target.classList.remove('completed')
-} else {
-  event.target.classList.add('completed')
-}
+  if (event.target.classList.contains('completed')) {
+    event.target.classList.remove('completed');
+  } else {
+    event.target.classList.add('completed');
+  }
+});
+
+clearBtn.addEventListener('click', () => {
+  ol.innerHTML = '';
 });
