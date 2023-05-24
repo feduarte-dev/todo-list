@@ -5,6 +5,8 @@ const li = document.getElementsByTagName('li');
 const clearBtn = document.getElementById('apaga-tudo');
 const completedBtn = document.getElementById('remover-finalizados');
 const saveBtn = document.getElementById('salvar-tarefas');
+const rmvBtn = document.getElementById('remover-selecionado');
+const selected = document.getElementsByClassName('selected');
 
 const addList = () => {
   const list = document.createElement('li');
@@ -17,8 +19,10 @@ addBtn.addEventListener('click', addList);
 ol.addEventListener('click', (event) => {
   for (let index = 0; index < li.length; index += 1) {
     li[index].style.backgroundColor = 'white';
+    li[index].classList.remove('selected')
   }
   event.target.style.backgroundColor = 'gray';
+  event.target.classList.add('selected');
 });
 
 ol.addEventListener('dblclick', (event) => {
@@ -47,9 +51,14 @@ completedBtn.addEventListener('click', () => {
 });
 
 saveBtn.addEventListener('click', () => {
-  localStorage.setItem("list", ol.innerHTML);
+  localStorage.setItem('list', ol.innerHTML);
 });
 
+rmvBtn.addEventListener('click', () => {
+  selected[0].remove();
+}
+);
+
 window.onload = function () {
-  ol.innerHTML = localStorage.getItem("list");
+  ol.innerHTML = localStorage.getItem('list');
 };
