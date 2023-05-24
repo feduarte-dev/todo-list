@@ -9,7 +9,6 @@ const rmvBtn = document.getElementById('remover-selecionado');
 const selected = document.getElementsByClassName('selected');
 const upBtn = document.getElementById('mover-cima');
 const downBtn = document.getElementById('mover-baixo');
-const select2 = document.getElementsByClassName('selected')[0];
 
 const addList = () => {
   const list = document.createElement('li');
@@ -74,31 +73,16 @@ upBtn.addEventListener('click', () => {
   }
 });
 downBtn.addEventListener('click', () => {
- 
-    // const liPai = li[0].parentNode;
-    // if (
-    //   li[index].classList.contains('selected') &&
-    //   li[index].nextElementSibling
-    // ) {
-      console.log(select2, selected);
-      // liPai.insertBefore(select2, select2.nextElementSibling.nextElementSibling);
-    // }
-
+  if (selected[0]) {
+    if (selected[0].nextElementSibling) {
+    const liPai = li[0].parentNode;
+    liPai.insertBefore(
+      selected[0],
+      selected[0].nextElementSibling.nextElementSibling
+    );
+  }}
 });
-
 
 window.onload = function () {
   ol.innerHTML = localStorage.getItem('list');
 };
-
-// downBtn.addEventListener('click', () => {
-//   for (let index = 0; index < li.length; index += 1) {
-//     const liPai = li[index].parentNode;
-//     if (
-//       li[index].classList.contains('selected') &&
-//       li[index].nextElementSibling
-//     ) {
-//       liPai.insertBefore(li[index], li[index].nextSibling.nex);
-//     }
-//   }
-// });
