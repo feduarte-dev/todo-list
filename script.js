@@ -80,7 +80,7 @@ downBtn.addEventListener('click', () => {
       li[index].classList.contains('selected') &&
       li[index].nextElementSibling
     ) {
-      liPai.insertBefore(li[index], li[index].nextElementSibling.nextElementSibling);
+      liPai.insertBefore(li[index], li[index].nextSibling.nextSibling);
     }
   }
 });
