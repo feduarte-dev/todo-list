@@ -7,6 +7,8 @@ const completedBtn = document.getElementById('remover-finalizados');
 const saveBtn = document.getElementById('salvar-tarefas');
 const rmvBtn = document.getElementById('remover-selecionado');
 const selected = document.getElementsByClassName('selected');
+const upBtn = document.getElementById('mover-cima');
+const downBtn = document.getElementById('mover-baixo');
 
 const addList = () => {
   const list = document.createElement('li');
@@ -19,7 +21,7 @@ addBtn.addEventListener('click', addList);
 ol.addEventListener('click', (event) => {
   for (let index = 0; index < li.length; index += 1) {
     li[index].style.backgroundColor = 'white';
-    li[index].classList.remove('selected')
+    li[index].classList.remove('selected');
   }
   event.target.style.backgroundColor = 'gray';
   event.target.classList.add('selected');
@@ -37,6 +39,7 @@ clearBtn.addEventListener('click', () => {
   ol.innerHTML = '';
 });
 
+// Precisei fazer dois for iguais para deletar mais de um item com a classe completo
 completedBtn.addEventListener('click', () => {
   for (let index = 0; index < li.length; index += 1) {
     if (li[index].classList.contains('completed')) {
@@ -56,8 +59,31 @@ saveBtn.addEventListener('click', () => {
 
 rmvBtn.addEventListener('click', () => {
   selected[0].remove();
-}
-);
+});
+
+upBtn.addEventListener('click', () => {
+  for (let index = 0; index < li.length; index += 1) {
+    const liPai = li[index].parentNode;
+    if (
+      li[index].classList.contains('selected') &&
+      li[index].previousElementSibling
+    ) {
+      liPai.insertBefore(li[index], li[index - 1]);
+    }
+  }
+});
+
+downBtn.addEventListener('click', () => {
+  for (let index = 0; index < li.length; index += 1) {
+    const liPai = li[index].parentNode;
+    if (
+      li[index].classList.contains('selected') &&
+      li[index].nextElementSibling
+    ) {
+      liPai.insertBefore(li[index], li[index].nextElementSibling.nextElementSibling);
+    }
+  }
+});
 
 window.onload = function () {
   ol.innerHTML = localStorage.getItem('list');
